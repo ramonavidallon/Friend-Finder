@@ -5,5 +5,10 @@ var path = require('path');
 var app = express();
 var port = process.env.PORT || 3000;
 
+app.use(express.static("app/public"));
+
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
+
+
 app.listen(port, () => console.log("listening on port: %s", port));
- 
