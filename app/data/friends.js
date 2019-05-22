@@ -34,4 +34,6 @@ var friendsArr = [
     photo: "https://specials-images.forbesimg.com/imageserve/5c76b4b84bbe6f24ad99c370/416x416.jpg?background=000000&cropX1=0&cropX2=4000&cropY1=0&cropY2=4000",
     scores: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
   }
-]
+];
+
+module.exports = friendsData;
