@@ -30,6 +30,9 @@
   <li> For this application there are are two  HTML files created: <code>home.html</code> and <code>survery.html</code>. These two pages will serve as the front end portion of our code/application </li>
   <li> Along with the two HTML files, we also will have two routing files which will be named: <code>htmlRoutes.js</code> and <code> apiRoutes.js</code>. These routes will determine the backend logic based on the request being made. </li>
   <li> The code determines the best match by calculating and finding the friend with the minimal difference in scores and then sending that friend to the browser as a JSON object </li>
-  <li> Our rich friends will be stored as an array in our <code>friends.js</code> file. This will serve as our API which will then be exported </li> example of our array is displayed below: 
+  <li> Our rich friends will be stored as an array in our <code>friends.js</code> file. This will serve as our API which will then be exported. The example of the array is displayed below: </li>
+  </ul>
+  <img width="883" alt="friendsJS screenshot for readme" src="https://user-images.githubusercontent.com/43662571/58275810-cbb1f480-7d4a-11e9-9429-72fe58b16eae.png">
+
     
    
