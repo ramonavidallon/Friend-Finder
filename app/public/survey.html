@@ -5,22 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <title>Rich Tech Friend Finder</title>
 </head>
@@ -54,10 +51,8 @@
       <option value="2">2</option>
       <option value="3" selected>3</option>
       <option value="4">4</option>
-      <option value="5" (Strongly Agree)</option> 
-      </select> 
-      
-      <hr>
+      <option value="5" (Strongly Agree)</option> </select> 
+        <hr>
 
         <h3>Question #2</h3>
         <h4>I tend to procrastinate.</h4>
@@ -176,83 +171,98 @@
 
         <br><br><br>
 
-        <button type="submit" class="btn btn-dark btn-md btn-block" id="submit">Done
-        </button>
-
+        <button type="submit" class="btn btn-dark btn-block submit" data-toggle="modal" data-target="#myModal"
+          id="searchBtn"></span><span class="glyphicon glyphicon-ok-circle"></span> Done</button>
         <br>
 
         <div>
-          <p><a href="/api/friends">API List</a> | <a href="https://github.com/ramonavidallon/Friend-Finder.git">Github
+          <p><a href="/api/friends">API List</a> | <a
+              href="https://github.com/ramonavidallon/Friend-Finder.git">Github
               Repo</a>
         </div>
   </div>
 
-  <div id="matchModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-            <h2 class="modal-title">Your Match</h2>
-          </div>
-
-          <div class="modal-body">
-            <h2 id="richFriendName"></h2>
-            <img
-              id="richFriendImg"
-              src="https://www.trbimg.com/img-5c238986/turbine/ct-spt-lebron-james-recruit-free-agents-cavaliers-20181226/400x400"
-              alt="A picture of Lebron James as a placeholder image"/>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Exit
-            </button>
-          </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Best Match</h4>
+        </div>
+        <div class="modal-body">
+          <h2 id="match-name"></h2>
+          <img id="match-img" height="200" href="https://basketball.realgm.com/images/nba/4.2/wiretap/photos/2006/James_LeBron_lal_181107.jpg">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
+  </div>
+  </div>
 
 </body>
 
 <script type="text/javascript">
-$("$submit").on("click", function(){
-  function formValidation() {
-    var valid = true;
-    $(".form-control").each(function(){
-      if ($(this).val() === '') valid = false;
+
+$("#searchBtn").on("click", function(event) {
+        event.preventDefault();
+        function validate(){
+          var isValid = true;
+          $(".form-control").each(function(){
+            if($(this).val() === "" || $(this).val() === null){
+              isValid = false;
+            }
+          });
+          $(".chosen-select").each(function(){
+            if($(this).val() === null || $(this).val() === ""){
+              isValid = false;
+            }
+          })
+          return isValid;
+        }
+        
+        //if statement so if data the data we insert is valid, then we will post it.
+        if(validate()){
+            var score = [
+              $("#question1").val().trim(), 
+              $("#question2").val().trim(), 
+              $("#question3").val().trim(), 
+              $("#question4").val().trim(),
+              $("#question5").val().trim(),
+              $("#question6").val().trim(),
+              $("#question7").val().trim(),
+              $("#question8").val().trim(), 
+              $("#question9").val().trim(), 
+              $("#question10").val().trim()
+            ];
+            var addedFriend = {
+                name: $("#name").val(),
+                photo: $("#photo").val(),
+                scores: score
+                };
+            console.log(addedFriend);
+            $.ajax({
+              type: 'POST',
+              data: addedFriend,
+              url: "/api/friends",
+              success: function(res){
+                console.log(res);
+                alert("Info added");
+                $("#match-name").text(res.name);
+                $("#match-img").attr("src", res.photo);
+                $("#results-modal").modal("toggle"); 
+              }
+            })
+          }
+          else{
+            alert("Make sure everything on the form is filled out!");
+          }
     });
-    $(".chosen-select").each(function(){
-      if ($(this).val() === '') valid = false;
-    });
-    return valid;
-  }
-  if (formValidation() === true) {
-    var userData = {
-      name: $("#name").val(),
-      photo: $("#photo").val(),
-      scores: [
-        $("#question1").val(),
-        $("#question2").val(),
-        $("#question3").val(),
-        $("#question4").val(),
-        $("#question5").val(),
-        $("#question6").val(),
-        $("#question7").val(),
-        $("#question8").val(),
-        $("#question9").val(),
-        $("#question10").val(),
-      ]
-    };
-    var currentURL = window.location.origin;
-    $.post(currentURL + "/api/friends", userData, function(data){
-      $("#richFriendName").text(data.name);
-      $("#richFriendImg").attr("src", data.photo);
-      $("#resultsModal").modal("toggle");
-    });
-  } else {
-    alert("Please fill out all fields before proceeding!")
-  } return false;
-});
+  
+
+
 
 </script>
 

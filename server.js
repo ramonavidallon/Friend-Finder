@@ -1,14 +1,22 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-
+//NPM PACKAGES USED FOR THIS APPLICATION//
+var express = require("express");
+var bodyParser = require("body-parser");
+var path = require("path");
+//SENDS A MESSAGE TO NODE AND TELL IT WE ARE USING EXPRESS//
 var app = express();
-var port = process.env.PORT || 3000;
+//SETTING PORT//
+var PORT = process.env.PORT || 3000;
 
-app.use(express.static("app/public"));
-
-require("./app/routing/apiRoutes.js")(app);
-require("./app/routing/htmlRoutes.js")(app);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
-app.listen(port, () => console.log("listening on port: %s", port));
+var apiroutes = require("./app/routing/apiRoutes.js");
+var htmlroutes = require("./app/routing/htmlRoutes.js");
+
+app.use(apiroutes);
+app.use(htmlroutes);
+//SERVER START UP//
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
+});
