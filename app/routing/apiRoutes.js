@@ -4,13 +4,13 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var apirouter = express.Router();
 
-// Current Friends List
+//FRIENDS LIST//
 apirouter.get("/api/friends", function(req,res){
   res.json(friends);
 })
 
 
-//New User Function
+//NEW FRIEND FUNCTION//
 apirouter.post("/api/friends", function(req, res){
   console.log("almost there...");
   var newFriend = req.body;
@@ -24,7 +24,7 @@ apirouter.post("/api/friends", function(req, res){
     }
     return newScore;
   }
-  //this function calculates difference of elements between two arrays and then sums up the difference
+  //FUNCTION TO CALCULATE THE DIFFERENCE BETWEEN TWO ARRAYS THEN ADDS UP DIFF//
   var totalDiff = function(arrA, arrB){
     delta = 0;
     for(var i=0; i<arrA.length; i++){
@@ -51,16 +51,15 @@ apirouter.post("/api/friends", function(req, res){
       return minIndex;
   }
 
-  var newFriendOutcome = newScore(newFriend['scores[]']); //array of numbers
-  var currentFriendOutcome = []; //array of arrays
+  var newFriendOutcome = newScore(newFriend['scores[]']); //
+  var currentFriendOutcome = [];
   var differences = [];
 
-  //recall friends is an array of objects
   for(var i=0; i < friends.length;i++){
     currentFriendOutcome.push(newScore(friends[i]['scores[]']));
   }
 
-  //This takes differences between current friend score and new friend score
+  //FOR LOOP THAT TAKES DIFFERENCES BETWEEN CURRENT FRIEND AND NEW FRIEND RESULT//
   for (var i=0; i < currentFriendOutcome.length; i++){
     differences.push(totalDiff(newFriendOutcome, currentFriendOutcome[i]));
   }
